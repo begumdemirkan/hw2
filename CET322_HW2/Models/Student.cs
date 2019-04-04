@@ -24,9 +24,12 @@ namespace CET322_HW1.Models
         [Required]
         public int DepartmentId{ get; set; }
 
+        public string ImageUrl { get; set; }
         public Department Department{ get; set; }
         [NotMapped]
         public virtual IEnumerable<SelectListItem> departments { get; set; }
+
+        public string CV { get; set; }
 
 
     }

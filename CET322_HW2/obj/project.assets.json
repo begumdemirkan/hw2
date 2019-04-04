@@ -12947,11 +12947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Begum\\Desktop\\CET322_HW2\\CET322_HW2\\CET322_HW2.csproj",
+      "projectUniqueName": "C:\\Users\\Begum\\Desktop\\hw4\\CET322_HW2\\CET322_HW2.csproj",
       "projectName": "CET322_HW2",
-      "projectPath": "C:\\Users\\Begum\\Desktop\\CET322_HW2\\CET322_HW2\\CET322_HW2.csproj",
+      "projectPath": "C:\\Users\\Begum\\Desktop\\hw4\\CET322_HW2\\CET322_HW2.csproj",
       "packagesPath": "C:\\Users\\Begum\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Begum\\Desktop\\CET322_HW2\\CET322_HW2\\obj\\",
+      "outputPath": "C:\\Users\\Begum\\Desktop\\hw4\\CET322_HW2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

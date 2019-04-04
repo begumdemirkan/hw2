@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using CET322_HW1.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +15,21 @@ namespace CET322_HW1.Controllers
 {
     public class StudentsController : Controller
     {
-
         StudentContext StudentContext;
 
-        public StudentsController(StudentContext context)
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public StudentsController(StudentContext context, IHostingEnvironment hostingEnvironment)
         {
             StudentContext = context;
-
+            _hostingEnvironment = hostingEnvironment;
+            
         }
+     
+       
+
+     
+
         public IActionResult Index()
         {
         var students = StudentContext.Students.Include(s => s.Department).ToList();
@@ -51,13 +61,22 @@ namespace CET322_HW1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Add(Student student)
+        public async Task<ActionResult> Add(Student student, IFormFile FileUrl)
         {
             if (ModelState.IsValid)
             {
                 student.Department = StudentContext.Department.Where(x => x.Id == student.DepartmentId).FirstOrDefault();
                 StudentContext.Students.Add(student);
 
+                string dirPath = Path.Combine(_hostingEnvironment.WebRootPath, @"uploads\");
+                var fileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + FileUrl.FileName;
+                using (var fileStream = new FileStream(dirPath + fileName, FileMode.Create))
+                {
+                    await FileUrl.CopyToAsync(fileStream);
+                }
+
+                student.ImageUrl = fileName;
+                StudentContext.Add(student);
                 await StudentContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -110,8 +129,8 @@ namespace CET322_HW1.Controllers
                 }
 
 
-                //StudentContext.Entry(student).State = EntityState.Modified;
-                //StudentContext.SaveChanges();
+                StudentContext.Entry(student).State = EntityState.Modified;
+                StudentContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CET322_HW2.Migrations
 {
     [DbContext(typeof(StudentContext))]
-    [Migration("20190315202949_initial")]
-    partial class initial
+    [Migration("20190403100145_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,8 @@ namespace CET322_HW2.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CV");
 
                     b.Property<int>("DepartmentId");
 

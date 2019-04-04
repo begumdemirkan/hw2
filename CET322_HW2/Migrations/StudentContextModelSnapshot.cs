@@ -38,11 +38,15 @@ namespace CET322_HW2.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CV");
+
                     b.Property<int>("DepartmentId");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name")
                         .IsRequired()
