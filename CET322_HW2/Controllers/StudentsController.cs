@@ -66,7 +66,7 @@ namespace CET322_HW1.Controllers
             if (ModelState.IsValid)
             {
                 student.Department = StudentContext.Department.Where(x => x.Id == student.DepartmentId).FirstOrDefault();
-                StudentContext.Students.Add(student);
+                //StudentContext.Students.Add(student);
 
                 string dirPath = Path.Combine(_hostingEnvironment.WebRootPath, @"uploads\");
                 var fileName = Guid.NewGuid().ToString().Replace("-", "") + "_" + FileUrl.FileName;
